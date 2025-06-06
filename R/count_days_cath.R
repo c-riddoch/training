@@ -8,7 +8,7 @@
 count_days_cath<- function(){
 
   # set birthday
-  birthday <- as.Date("2025-08-15")
+  birthday <- as.Date("2025-08-01")
 
   # Get today's date
   today_date <- Sys.Date()
