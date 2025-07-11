@@ -1,0 +1,105 @@
+---
+title: "Pipes"
+execute: 
+  echo: True
+author: Cath Riddoch
+format:
+  html:
+    embed-resources: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+```
+
+```{r}
+head(mtcars)
+```
+
+no rstudio https://webr.r-wasm.org/latest/
+
+## What are pipes?
+
+%>%
+
+|>
+
+
+Keyboard shortcut 
+
+
+## Example of using with or without pipe
+Find all cars with 4 cylinders (cyl)
+```{r}
+filter(.data, condition)
+```
+
+```{r}
+
+```
+
+## Place holders
+
+magrittr placeholder is .
+
+base r placeholder is _
+
+```{r}
+mtcars %>%
+  lm(mpg ~ wt, data = .)
+```
+
+```{r}
+mtcars |>
+  lm(mpg ~ wt, data = _)
+```
+
+
+## Example 2
+```{r}
+## find the mean mpg of cars with 4 cylinders
+
+# get the cars with 4 cyl
+four_cylinder_cars<- filter(mtcars, cyl == 4)
+
+# get the mpg for those 4 cylinder cars
+mpg_values<- four_cylinder_cars$mpg
+
+# calculate the mean
+result<- mean(mpg_values)
+
+result
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+Or have nested function calls (don't do this)
+
+```{r}
+mean(filter(mtcars, cyl == 4)$mpg)
+```
+
+
+## Why use base pipe?
+
+Advantages of base pipe:
+
+-   better performance
+
+-   works without dependency on Magrittr
+
+-   less cryptic errors
+
+-   looks nicer!
+
+
