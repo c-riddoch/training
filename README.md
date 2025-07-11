@@ -2,7 +2,7 @@
 
 ## Welcome
 Hello, welcome to this training repo. 
-Please use this to practice using GitHub. 
+Please feel free to use this to practice using GitHub. 
 I don't mind if you break it.
 
 ## Workshop notes
@@ -12,6 +12,5 @@ These are added after each workshop
 - functions
 - scope
 - unit tests
-
 
 
