@@ -83,6 +83,15 @@ result
 
 ```
 
+
+
+
+
+
+
+
+
+
 Or have nested function calls (don't do this)
 
 ```{r}
@@ -92,14 +101,10 @@ mean(filter(mtcars, cyl == 4)$mpg)
 
 ## Why use base pipe?
 
-Advantages of base pipe:
 
--   better performance
+## Exercises
 
--   works without dependency on Magrittr
+1. Find the mass in kg of the heaviest 6 cylinder car (use wt_kg = wt * 453.6)
 
--   less cryptic errors
-
--   looks nicer!
-
+2. Return the name of the 6 cylinder car with highest mpg 
 
