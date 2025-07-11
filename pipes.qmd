@@ -103,6 +103,7 @@ mean(filter(mtcars, cyl == 4)$mpg)
 
 
 ## Exercises
+https://github.com/c-riddoch/training
 
 1. Find the mass in kg of the heaviest 6 cylinder car (use wt_kg = wt * 453.6)
 
