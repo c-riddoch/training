@@ -13,33 +13,51 @@ editor:
 
 ```{r}
 #| include: false
+
 library(tidyverse)
 ```
+
+no rstudio https://webr.r-wasm.org/latest/
 
 ```{r}
 head(mtcars)
 ```
 
-no rstudio https://webr.r-wasm.org/latest/
+
 
 ## What are pipes?
 
-%>%
+%>% from magrittr package 2014 (Tidyverse)
+https://en.wikipedia.org/wiki/The_Treachery_of_Images
 
-|>
+|> base r
 
+-   new pipe was introduced into R in May 2021 with version 4.1.0
 
-Keyboard shortcut 
+-   new place holder intro R in April 2022 with version 4.2.0
+
+I forgot to mention, not on work computers but https://github.com/tonsky/FiraCode
+is a font that does nice pipes and arrows.
+
+Keyboard shortcut is ctrl + shift + m 
+
+Tools, Global Options , select
+"Code" option for "use native pipe operator, |>"
+
+Both types of pipe pass the thing on the left to the thing on the right, usually as the first argument of a function call.
 
 
 ## Example of using with or without pipe
 Find all cars with 4 cylinders (cyl)
+
 ```{r}
-filter(.data, condition)
+filter(mtcars, cyl == 4)
 ```
 
-```{r}
 
+```{r}
+mtcars |>
+  filter(cyl == 4)
 ```
 
 ## Place holders
@@ -76,23 +94,38 @@ result
 ```
 
 ```{r}
-
+mtcars |>
+  filter(cyl == 4)|>
+  _$mpg |>
+  mean()
 ```
+or 
+```{r}
+mtcars %>%
+  filter(cyl == 4) %>%
+  .$mpg %>%
+  mean()
+```
+
+Using select in this example is tempting but will error since select returns a dataframe not a vector. 
+```{r}
+mtcars |>
+  filter(cyl == 4) |>
+  select(mpg) |>
+  mean()
+```
+
+Using pull instead would work
 
 ```{r}
-
+mtcars |>
+  filter(cyl == 4) |>
+  pull(mpg) |>
+  mean()
 ```
 
 
-
-
-
-
-
-
-
-
-Or have nested function calls (don't do this)
+Or have nested function calls (don't do this in R).
 
 ```{r}
 mean(filter(mtcars, cyl == 4)$mpg)
@@ -100,6 +133,14 @@ mean(filter(mtcars, cyl == 4)$mpg)
 
 
 ## Why use base pipe?
+
+-   better performance
+
+-   works without dependency on Magrittr
+
+-   less cryptic errors
+
+-   looks nicer!
 
 
 ## Exercises
