@@ -28,6 +28,8 @@ head(mtcars)
 ## What are pipes?
 
 %>% from magrittr package 2014 (Tidyverse)
+
+Link to picture by Magritte
 https://en.wikipedia.org/wiki/The_Treachery_of_Images
 
 |> base r
@@ -39,7 +41,7 @@ https://en.wikipedia.org/wiki/The_Treachery_of_Images
 I forgot to mention, not on work computers but https://github.com/tonsky/FiraCode
 is a font that does nice pipes and arrows.
 
-Keyboard shortcut is ctrl + shift + m 
+In RStudio the Keyboard shortcut for a pipe is ctrl + shift + m 
 
 Tools, Global Options , select
 "Code" option for "use native pipe operator, |>"
@@ -78,8 +80,9 @@ mtcars |>
 
 
 ## Example 2
+### find the mean mpg of cars with 4 cylinders
 ```{r}
-## find the mean mpg of cars with 4 cylinders
+
 
 # get the cars with 4 cyl
 four_cylinder_cars<- filter(mtcars, cyl == 4)
@@ -107,15 +110,14 @@ mtcars %>%
   mean()
 ```
 
-Using select in this example is tempting but will error since select returns a dataframe not a vector. 
+Using select in this example is tempting but will error since select returns a dataframe not a vector.  
 ```{r}
 mtcars |>
   filter(cyl == 4) |>
   select(mpg) |>
   mean()
 ```
-
-Using pull instead would work
+We could use select with summarise or use pull instead. 
 
 ```{r}
 mtcars |>
@@ -125,7 +127,7 @@ mtcars |>
 ```
 
 
-Or have nested function calls (don't do this in R).
+Or have nested function calls (don't do this in R unless you really, really need to).
 
 ```{r}
 mean(filter(mtcars, cyl == 4)$mpg)
@@ -138,7 +140,7 @@ mean(filter(mtcars, cyl == 4)$mpg)
 
 -   works without dependency on Magrittr
 
--   less cryptic errors
+-   less cryptic errors (errors return the name of the piped object and not just a dot)
 
 -   looks nicer!
 
@@ -147,6 +149,38 @@ mean(filter(mtcars, cyl == 4)$mpg)
 https://github.com/c-riddoch/training
 
 1. Find the mass in kg of the heaviest 6 cylinder car (use wt_kg = wt * 453.6)
+```{r}
+mtcars |>
+  filter(cyl == 6)|>
+  mutate(wt_kg = wt * 453.6)|>
+  _$wt_kg |>
+  max()
+```
+
+Interestingly even without 4th line it works.
+```{r}
+mtcars |>
+  filter(cyl == 6)|>
+  mutate(wt_kg = wt * 453.6)|>
+  max()
+```
+
+Can do it with summarise or even select then summarise.
+```{r}
+mtcars |>
+  filter(cyl == 6) |>
+  mutate(wt_kg = wt * 453.6) |>
+  summarise(max_wt_kg = max(wt_kg))
+```
+
 
 2. Return the name of the 6 cylinder car with highest mpg 
+
+```{r}
+mtcars |>
+  arrange(desc(mpg)) |>
+  head(1)|>
+  rownames()
+```
+
 
