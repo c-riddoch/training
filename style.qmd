@@ -15,26 +15,71 @@ editor:
 #| include: false
 library(tidyverse)
 ```
+
 no rstudio https://webr.r-wasm.org/latest/
 
 ## How to clone a repository
 
 Go to GitHub and collect the ssh url (green button)
 
-In Rstudio
-  new project
-  version control
-  git 
-  
+In Rstudio new project version control git
+
 Paste in the url
 
 ## Warnings
 
-## What is style
+Coding is an art. It is a creative process. Therefore there are very few
+absolutes and lots of opinions.
 
-## Why should you care
+Code is read much more than it is written so making it easy to read and
+understand is good practice.
 
-## What is idiomatic code
+Everyone has personal style based on how and when they learned to code.
+
+Good style is subjective
+
+## What is style?
+
+white space
+
+indentation
+
+naming conventions
+
+capitalisation
+
+comments
+
+## Why should you care?
+
+Improves readability/ accessibility
+
+Increases ease of maintenance
+
+If you can quickly read and understand someone elses code then the
+chance of errors during modifications is reduced.
+
+Act of kindness towards your future self or future colleagues.
+
+Sayer's law
+
+> "In any dispute, the intensity of feeling is inversely proportional to
+> the value of the issues at stake."
+
+Tidyverse Style Guide
+
+<https://style.tidyverse.org/files.html>
+
+Thanks to Jo for this link to Statistics Group good practice
+
+<https://scotsconnect.sharepoint.com/sites/StatisticsGroup-Org-SG/SitePages/Coding-Good-Practice.aspx>
+
+## What is idiomatic code?
+
+Is code that follows the conventions and best practices or unique
+features of a particular programming language. In Python is called
+pythonic in R is called the R way! Some languages eg Ruby are very
+opinionated this means they force you to use the way of that language.
 
 ```{r}
 i = 0
@@ -45,25 +90,37 @@ while (i < 100) {
 }
 ```
 
+The code below uses arrows for assignment and r append function
+
 ```{r}
 my_data <- c()
 for (i in 0:100) {
   my_data <- append(my_data, i^2 / 365) }
 ```
 
+The code below this makes use of R built in vectors
+
 ```{r}
 my_data <- (0:100) ^ 2 / 365
 ```
 
-Copilot
-Write this code in the tidyverse style
+Copilot: Write this code in the tidyverse style
+
+Not loving what it did with making a tibble for one column mutating it
+and taking it back out. Also don't love the use of i when it is not
+counting. (i is used in computing science for holding a count that is
+incremented each loop) here it should have a better name.
+
 ```{r}
 my_data <- tibble(i = 0:99) %>%
   mutate(value = i * i / 356) %>%
   pull(value)
 ```
 
+Its not wrong but I don't like it.
+
 ## Code smell
+
 Quote from Jenny Bryan "Code smell" is an evocative term for that vague
 feeling of unease we get when reading certain bits of code. It's not
 necessarily wrong, but neither is it obviously correct. We may be
@@ -83,10 +140,60 @@ sd1=sd(df1$mpg);sd2=sd(df2$mpg);print("SD for 4 cylinders:");print(sd1);print('S
 ```
 
 ```{r}
+mean_4_cylinders <- mtcars |>
+  filter(mtcars$cyl == 4) |>
+  pull(mpg) |>
+  mean()
+print(paste("Average MPG for 4 cylinders:", mean_4_cylinders))
 
+sd_4_cylinders <- mtcars |>
+  filter(mtcars$cyl == 4) |>
+  pull(mpg) |>
+  sd()
+print(paste("SD for 4 cylinders:", sd_4_cylinders))
 
+mean_6_cylinders <- mtcars |>
+  filter(mtcars$cyl == 6) |>
+  pull(mpg) |>
+  mean()
+print(paste("Average MPG for 6 cylinders:", mean_6_cylinders))
+
+sd_6_cylinders <- mtcars |>
+  filter(mtcars$cyl == 6) |>
+  pull(mpg) |>
+  sd()
+print(paste("SD for 6 cylinders:", sd_6_cylinders))
+
+```
+
+```{r}
+# summary for 4 cylinders 
+cylinders_4 <- mtcars |>
+  filter(mtcars$cyl == 4) |>
+  summarise(mean = mean(mpg),
+            sd_value = sd(mpg))
+  
+print(paste("Average MPG for 4 cylinders:", cylinders_4$mean))
+print(paste("Standard deviation for 4 cylinders:", cylinders_4$sd_value))
+
+# summary for 6
+cylinders_6 <- mtcars |>
+  filter(mtcars$cyl == 6) |>
+  summarise(mean = mean(mpg),
+            sd_value = sd(mpg))
+  
+print(paste("Average MPG for 6 cylinders:", cylinders_6$mean))
+print(paste("Standard deviation for 6 cylinders:", cylinders_6$sd_value))
 ```
 
 ## When to focus on style
 
+When sharing your code think about pressing the style addins button
+first.
 
+When reviewing code to add into an existing package.
+
+## Exercise for next week turn the above code into a function
+
+Make a function which can be called for 4 or 6 cylinders:
+summarise_mpg(4) summarise_mpg(6)
