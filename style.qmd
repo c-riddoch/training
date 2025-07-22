@@ -1,0 +1,92 @@
+---
+title: "Style"
+execute: 
+  echo: True
+author: Cath Riddoch
+format:
+  html:
+    embed-resources: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+```
+no rstudio https://webr.r-wasm.org/latest/
+
+## How to clone a repository
+
+Go to GitHub and collect the ssh url (green button)
+
+In Rstudio
+  new project
+  version control
+  git 
+  
+Paste in the url
+
+## Warnings
+
+## What is style
+
+## Why should you care
+
+## What is idiomatic code
+
+```{r}
+i = 0
+my_data = c()
+while (i < 100) {
+  my_data = c(my_data, i * i / 356) 
+  i = i + 1 
+}
+```
+
+```{r}
+my_data <- c()
+for (i in 0:100) {
+  my_data <- append(my_data, i^2 / 365) }
+```
+
+```{r}
+my_data <- (0:100) ^ 2 / 365
+```
+
+Copilot
+Write this code in the tidyverse style
+```{r}
+my_data <- tibble(i = 0:99) %>%
+  mutate(value = i * i / 356) %>%
+  pull(value)
+```
+
+## Code smell
+Quote from Jenny Bryan "Code smell" is an evocative term for that vague
+feeling of unease we get when reading certain bits of code. It's not
+necessarily wrong, but neither is it obviously correct. We may be
+reluctant to work on such code, because past experience suggests it's
+going to be fiddly and bug-prone.
+
+## Exercise 1
+
+without writing your own function make this better
+
+```{r}
+
+df1=mtcars[mtcars$cyl==4,];df2 = mtcars[mtcars$cyl==6,]
+avg1=mean(df1$mpg);avg2=mean(df2$mpg);print( "Average MPG for 4 cylinders:" );print(avg1);print('Average MPG for 6 cylinders:');print(avg2)
+sd1=sd(df1$mpg);sd2=sd(df2$mpg);print("SD for 4 cylinders:");print(sd1);print('SD for 6 cylinders:');print(sd2)
+
+```
+
+```{r}
+
+
+```
+
+## When to focus on style
+
+
