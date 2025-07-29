@@ -47,36 +47,113 @@ summarise_mpg(4) summarise_mpg(6)
 one possible answer:
 
 ```{r}
+summarise_mpg <- function(cylinders) {
+  result <- mtcars |>
+    filter(cyl == cylinders) |>
+    summarise(
+      average = mean(mpg),
+      sd_value <- sd(mpg)
+    )
+  print(paste("Average MPG for", cylinders, "cylinders:", result$average))
+  print(paste("Standard deviation for", cylinders, "cylinders:", result$sd_value))
+}
 
-
-
+summarise_mpg(4)
+summarise_mpg(6)
 ```
 
-Talk about return
+I spoke about looking at the return value. The function above returns
+the text evaluated in the paste function. \[Assign the output to a
+variable then inspect the variable in the environment tab\]
+
+```{r}
+result<- summarise_mpg(4)
+```
+
+To return a more usable object use an explicit return
+
+```{r}
+summarise_mpg <- function(cylinders) {
+  result <- mtcars |>
+    filter(cyl == cylinders) |>
+    summarise(
+      average = mean(mpg),
+      sd_value <- sd(mpg)
+    )
+  print(paste("Average MPG for", cylinders, "cylinders:", result$average))
+  print(paste("Standard deviation for", cylinders, "cylinders:", result$sd_value))
+  
+  return(result)
+}
+
+summarise_mpg(4)
+summarise_mpg(6)
+```
+
+```{r}
+better_result<- summarise_mpg(4)
+```
+
+Now if you look in the environment tab we can see a tibble is returned.
+
+Advice - be careful what you evaluate last. Or use explicit return.
 
 ## Types of programming
 
 ![Types of programming](oop_fp.png)
 
-Object orientated programming
+### Object orientated programming
 
-Functional programming
+-branching -classes methods -S3, S4, R6
+
+### Functional programming
+
+-   linear
+-   simple, scalable, easy to understand, easy to test
+-   greater modularity and reusability
+-   well suited to data pipelines
 
 ## Functions
 
-structure of a function
+```{r}
+name<- function(parameters){thing to do}
+```
+
+Other than being the main building block in functional programming,
+functions also manage complexity by abstracting logic into small,
+understandable blocks.
 
 ## 'Good' functions
 
-list some things here
+-   clear purpose ie do one thing well and clearly describe what it
+    does.
+
+-   have descriptive arguments and provide default values where
+    appropriate to make the function flexible. BUT keep functions deep
+    rather than wide.
+
+-   Handle errors gracefully use stop() warning() or message() to inform
+    users of issues check inputs
+
+-   use anonymous functions where appropriate for short one-off
+    transformations eg inside map or mutate
+
+-   keep it DRY - use helper functions if needed
 
 ## Exercise 1 (1 minute)
 
-Write a function to convert Fahrenheit to Celsius
-formula below
+Write a function to convert Fahrenheit to Celsius formula below
 
 ```{r}
 C = (F-32) *5/9
+```
+
+```{r}
+convert_temperature <- function(temperature){
+  (temperature - 32) * 5/9
+}
+
+convert_temperature(77)
 ```
 
 ## Exercise 1b (2 minutes)
@@ -84,10 +161,25 @@ C = (F-32) *5/9
 Make it work backwards with an optional parameter
 
 ```{r}
+convert_temperature <- function(temperature, to = 'C') {
+  if (to == "C") {
+    return((temperature - 32) * 5/9)
+  } else if (to == "F") {
+    return(temperature * 9/5 + 32)
+    
+    #graceful error handling
+  } else {
+    stop("Invalid conversion type. Use 'F' or 'C'.")
+  }
+}
 
+convert_temperature(77)       
+convert_temperature(25, 'F') 
 ```
 
 ## Anonymous functions
+
+For short functions you don't expect to re-use.
 
 ```{r}
 single_side <- (1:5)
@@ -106,7 +198,7 @@ lambda notation introduced in R 4.1
 perimeter <- map_dbl(single_side, \(side) side^2)
 ```
 
-## Exercise 2 (for next week)
+## Exercise 2 (if you would like the challenge)
 
 ```{r}
 
