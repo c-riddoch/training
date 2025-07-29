@@ -1,0 +1,127 @@
+---
+title: "Functions"
+execute: 
+  echo: True
+author: Cath Riddoch
+format:
+  html:
+    embed-resources: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+```
+
+## Last week
+
+```{r}
+# summary for 4 cylinders 
+cylinders_4 <- mtcars |>
+  filter(mtcars$cyl == 4) |>
+  summarise(mean = mean(mpg),
+            sd_value = sd(mpg))
+  
+print(paste("Average MPG for 4 cylinders:", cylinders_4$mean))
+print(paste("Standard deviation for 4 cylinders:", cylinders_4$sd_value))
+
+# summary for 6
+cylinders_6 <- mtcars |>
+  filter(mtcars$cyl == 6) |>
+  summarise(mean = mean(mpg),
+            sd_value = sd(mpg))
+  
+print(paste("Average MPG for 6 cylinders:", cylinders_6$mean))
+print(paste("Standard deviation for 6 cylinders:", cylinders_6$sd_value))
+
+```
+
+Turn the code into a function
+
+Make a function which can be called for 4 or 6 cylinders:
+summarise_mpg(4) summarise_mpg(6)
+
+one possible answer:
+
+```{r}
+
+
+
+```
+
+Talk about return
+
+## Types of programming
+
+![Types of programming](oop_fp.png)
+
+Object orientated programming
+
+Functional programming
+
+## Functions
+
+structure of a function
+
+## 'Good' functions
+
+list some things here
+
+## Exercise 1 (1 minute)
+
+Write a function to convert Fahrenheit to Celsius
+formula below
+
+```{r}
+C = (F-32) *5/9
+```
+
+## Exercise 1b (2 minutes)
+
+Make it work backwards with an optional parameter
+
+```{r}
+
+```
+
+## Anonymous functions
+
+```{r}
+single_side <- (1:5)
+perimeter<- map_dbl(single_side, function(side) side^2)
+```
+
+\~ defines anonymous function in purrr package
+
+```{r}
+perimeter <-  map_dbl(single_side, ~ .^2)
+```
+
+lambda notation introduced in R 4.1
+
+```{r}
+perimeter <- map_dbl(single_side, \(side) side^2)
+```
+
+## Exercise 2 (for next week)
+
+```{r}
+
+test_results <- tibble(
+  maths = c(60, 75, 80, 90),
+  science = c(70, 85, 78, 88),
+  english = c(65, 80, 82, 91)
+)
+
+```
+
+Use mutate() and across() with an anonymous function to:
+
+Standardise each score column by subtracting the mean and dividing by
+the standard deviation.
+
+Do this without defining a named function — use an anonymous function
+inline.
