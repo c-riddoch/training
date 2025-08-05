@@ -1,0 +1,106 @@
+---
+title: "Scope"
+execute: 
+  echo: True
+author: Cath Riddoch
+format:
+  html:
+    embed-resources: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## Last week
+Spoke about functions, anonymous functions and optional arguments.
+Answers to the challenge are now on GitHub in the functions.qmd file.
+
+## Scope
+
+```{r}
+x <- 10
+```
+
+```{r}
+my_function <- function() {
+  x <- 5
+  return(x + 1)
+}
+```
+
+```{r}
+x <- 20
+```
+
+
+```{r}
+
+```
+
+
+### Can a function "see" global variables?
+```{r}
+x<- 10
+```
+
+```{r}
+my_function<- function(){
+  return (x + 1)
+}
+
+```
+
+```{r}
+my_function()
+```
+
+
+### Can the environment "see" function variables?
+
+```{r}
+my_function<- function(){
+  x <- 5
+  return (x + 1)
+}
+```
+
+```{r}
+x
+```
+
+
+## Why is this important?
+
+
+## Referentially transparent functions
+These are functions which always give the same output for a given input.
+Do not depend on anything not passed into the function.
+
+```{r}
+x<- 10
+```
+
+```{r}
+my_function<- function(){
+  return (x + 1)
+}
+```
+
+```{r}
+my_function()
+```
+
+```{r}
+x<- 5
+```
+
+```{r}
+my_function()
+```
+
+How should you write the function such that it always returns the same answer for the same input?
+```{r}
+
+
+```
+
