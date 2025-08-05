@@ -14,29 +14,36 @@ editor:
 ## Last week
 Spoke about functions, anonymous functions and optional arguments.
 Answers to the challenge are now on GitHub in the functions.qmd file.
+https://github.com/c-riddoch/training 
 
 ## Scope
+
+Today I am talking about scope in the context of functions.
+It is probably easier to demonstrate than describe but it is essentially which values of a variable are used by a function.
+
+If I am a bad programmer for not giving a nice variable name but for speed assign it to have the name x
 
 ```{r}
 x <- 10
 ```
-
+Then I define a function that uses x
 ```{r}
 my_function <- function() {
   x <- 5
   return(x + 1)
 }
 ```
-
+Then I assign x again
 ```{r}
 x <- 20
 ```
 
-
+Then I run my function - What value will get returned?
 ```{r}
-
+my_function()
 ```
-
+Scope is where a variable is accessible and visible in your code.
+R uses Lexical or static scope so it 'looks' where the function was defined not where it was called.
 
 ### Can a function "see" global variables?
 ```{r}
@@ -53,7 +60,8 @@ my_function<- function(){
 ```{r}
 my_function()
 ```
-
+It runs using the global variable value.
+Inside a function can "see" global variables.
 
 ### Can the environment "see" function variables?
 
@@ -67,10 +75,12 @@ my_function<- function(){
 ```{r}
 x
 ```
-
+No, the environment can't see variables defined inside a function.
 
 ## Why is this important?
+Writing in functions means your variables can exist only inside that function. This is sometimes called encapsulation or not polluting the global environment. 
 
+This prevents accidental overwriting or conflicts with variables elsewhere in your code.
 
 ## Referentially transparent functions
 These are functions which always give the same output for a given input.
@@ -89,18 +99,35 @@ my_function<- function(){
 ```{r}
 my_function()
 ```
-
+If I change a value in the global environment 
 ```{r}
 x<- 5
 ```
+This causes the same function with the same input to return a different value. This is bad.
+```{r}
+my_function()
+```
+When the value of x was changed the output of the function changed. Not referentially transparent.
 
+How should you write the function such that it always returns the same answer for the same input?
+```{r}
+my_function<- function(x = 10){
+  return (x + 1)
+}
+
+```
+
+```{r}
+x<- 20
+```
+
+Now my function with no arguments passed in always returns the same thing.
 ```{r}
 my_function()
 ```
 
-How should you write the function such that it always returns the same answer for the same input?
-```{r}
+## Bottom line:
+Don't use variables inside functions that you don't pass in as arguments.
 
-
-```
-
+## Next week
+testing- how do I know my function is doing what I think it is?
