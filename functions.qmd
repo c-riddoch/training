@@ -217,3 +217,17 @@ the standard deviation.
 
 Do this without defining a named function — use an anonymous function
 inline.
+
+One option is the Purrr way
+
+```{r}
+standardised_results <- test_results |>
+  mutate(across(everything(), ~ (. - mean(.)) / sd(.)))
+```
+
+Alternatively there is lambda notation way
+
+```{r}
+ standardised_results<- test_results |>
+  mutate(across(everything(), \(x) (x - mean(x)) / sd(x)))
+```
