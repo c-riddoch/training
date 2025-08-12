@@ -11,8 +11,102 @@ editor:
     wrap: 72
 ---
 
-## Unit tests
+## What are Unit tests
+
+Unit tests are just a way to formalise, automate and speed up that
+checking process.
+
+Individual components are tested in isolation to verify their
+correctness. These components often the smallest testable parts of an
+application or pipeline so could be functions, methods or classes.
+
+Tests that check functions
 
 ## Why use them
 
+Ensures individual pieces of code work as intended. - Does your function
+always do what you think it does?
+
+-   Helps catch bugs early before they become bigger issues
+
+-   Helps during refactoring of code or during the initial development
+    of code "TDD"
+
 ## How to use them
+
+Code I ran in workshop:
+
+```{r}
+usethis::create_package("path to where you want the package")
+
+usethis::use_r("add_one")
+usethis::use_test()
+```
+
+The test function I wrote
+
+```{r}
+test_that("add_one adds one", {
+
+  # arrange
+  test_data<- 5:10
+
+  # action
+  result<- add_one(test_data)
+
+  # assert
+  expect_equal(result, 6:11)
+})
+```
+
+Note that testthat tests must live in files below tests/testthat/ and
+the files must begin with "test"
+
+The test filename is displayed in the testthat output so with careful
+naming provides helpful context.
+
+A test file holds one or more test_that() tests Each test describes what
+it tis testing eg "multiplication works" Each test has one or more
+expectations eg expect_equal(2 \* 2, 4)
+
+## What makes a good test?
+
+Ideally tests should be self-sufficient and self-contained. It is more
+important to be obvious than DRY A range of values and edge cases should
+be included
+
+## other assertions
+
+expect_equal has some numeric tolerance If you want exact equivalence
+use expect_identical Also have:
+
+expect_null()
+
+expect_true()
+
+expect_false()
+
+expect_error()
+
+expect_warning()
+
+## running tests
+
+click the button
+
+Ctrl + Shift + T
+
+devtools::test()
+
+## Scope
+
+every testthat test has its own execution environment need to think
+about that when using functions from packages or running code globally
+
+## Feedback
+
+Fork the training repo
+
+Add your comments
+
+Submit pull request
