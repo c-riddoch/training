@@ -35,9 +35,13 @@ always do what you think it does?
 Code I ran in workshop:
 
 ```{r}
+# makes a package
 usethis::create_package("path to where you want the package")
 
+# makes a function
 usethis::use_r("add_one")
+
+# makes a test for the function 
 usethis::use_test()
 ```
 
@@ -52,9 +56,12 @@ test_that("add_one adds one", {
   # action
   result<- add_one(test_data)
 
-  # assert
+  # assert (can have multiple rows here checking different things)
   expect_equal(result, 6:11)
+  expect_true(is.numeric(result))
 })
+
+# can also have more than one testthat() I usually like a new testthat if I re-run the function with different input. 
 ```
 
 Note that testthat tests must live in files below tests/testthat/ and
