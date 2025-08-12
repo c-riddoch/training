@@ -1,0 +1,34 @@
+---
+title: "Feedback from Cath"
+execute: 
+  echo: True
+author: Cath Riddoch
+format:
+  html:
+    embed-resources: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+# Feedback sandwich
+
+## Positives
+I liked talking about technical subjects
+
+## Negatives
+It was difficult to get organised to do the workshop when I was busy
+Ten minutes was ambitiously short
+
+## Positives
+I enjoyed answering questions
+It made me re-visit some topics I rarely think about
+
+## Future
+I'm thinking about workshops on 
+- debugging/understanding errors
+- packages
+- config files
+- non-standard evaluation
+- documentation
+
+Let me know if you are interested
