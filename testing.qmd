@@ -20,8 +20,6 @@ Individual components are tested in isolation to verify their
 correctness. These components often the smallest testable parts of an
 application or pipeline so could be functions, methods or classes.
 
-Tests that check functions
-
 ## Why use them
 
 Ensures individual pieces of code work as intended. - Does your function
