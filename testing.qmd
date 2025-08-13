@@ -32,7 +32,9 @@ always do what you think it does?
 
 ## How to use them
 
-Code I ran in workshop:
+Code I ran in workshop this is here in case people missed it. Don't run
+this code inside Quarto. If you want to replicate what I did then copy
+the code and paste it into console to run.
 
 ```{r}
 # makes a package
@@ -45,7 +47,7 @@ usethis::use_r("add_one")
 usethis::use_test()
 ```
 
-The test function I wrote
+The test function I wrote inside the test created.
 
 ```{r}
 test_that("add_one adds one", {
@@ -110,8 +112,11 @@ about that when using functions from packages or running code globally
 
 ## Feedback
 
-Fork the training repo
+I would like feedback on the workshop series and requested that this be
+done by submitting a pull request to the training repository. I didn't
+demonstrate how to do that but any google search will give you
+instructions for how to submit a pull request. Please try. I don't care
+if you break the repo and you will gain experience and skills that are
+needed for working with code collaboratively.
 
-Add your comments
-
-Submit pull request
+<https://jarv.is/notes/how-to-pull-request-fork-github>
