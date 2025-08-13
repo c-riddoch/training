@@ -55,6 +55,9 @@ library(devtools)
 load_all()
 ```
 
+If I had loaded devtools earlier I wouldn't need to add the usethis:: in
+front of use_test and use_r.
+
 Each time you make a change to code inside a package you need to re-load
 the package. I use ctrl +shift +L.
 
