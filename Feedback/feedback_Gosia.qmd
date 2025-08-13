@@ -1,0 +1,49 @@
+---
+title: "Feedback from Gosia"
+execute: 
+  echo: True
+author: Malgorzata (Gosia) Kasprzyk
+format:
+  html:
+    embed-resources: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+# Feedback sandwich
+
+## Positives
+I liked the content of the workshops very much. It was very informative and on the topic. Having exercises and homework was very useful to practice the skills and allowed identifying things that maybe were not that clear. It was also useful to have a series of short workshops rather than a long workshop because it made it easier to find time for the workshop. 
+
+I have learn a lot:
+* Pipes - I knew very little about the two types of types before the workshop, so it was useful to find more about them and how their use differs.
+* Style - It has been useful to find about styles and how style might affect readibility of the code. It was useful to learn about packages that can help with the styles. I definitely need to incorporate these into my practice
+* Functions - Although I have been creating some functions beforehand, it has been very useful to learn about things that are worth considering when writing one. Learning about different ways of defining an anonymous functions was also very useful as I have seen these before but did not understand how they work.
+* Scope - that has been very useful to think about variables that are accessible to the function.
+* testthat - this was great to see in a simple example how test that could be used to test functions
+
+
+## Negatives
+I can't think of any negatives. Reflecting on your comment in the example about the workshop timing, I was not expecting the workshop to last 10 minutes. I think that up to 30 minutes is a good length of a workshop.
+
+## Positives
+I really liked exercises as it allowed me to practice the new knowledge on the go.
+
+## Future
+I would benefit from the list of workshops listed in the feedback example:
+- debugging/understanding errors
+- packages
+- config files
+- non-standard evaluation
+- documentation
+
+ I would like also workshops on (please do not worry if some are not of your interest, or beyond your scope)
+- target package
+- validate package
+- using parquet files
+- how to prevent issues with package versions in the future (what can I, if anything, do so that my code can still be run in some time when packages get updated/changed)
+- qmd files
+- rmd files
+- flexidashboards (or other interactive plots)
+- writing a package
+
