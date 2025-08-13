@@ -32,7 +32,9 @@ always do what you think it does?
 
 ## How to use them
 
-Code I ran in workshop:
+Code I ran in workshop this is here in case people missed it. Don't run
+this code inside Quarto. If you want to replicate what I did then copy
+the code and paste it into console to run.
 
 ```{r}
 # makes a package
@@ -51,7 +53,21 @@ usethis::use_test()
 usethis::use_test("add_one")
 ```
 
-The test function I wrote
+I then loaded devtools and the package by running the following code in
+the console.
+
+```{r}
+library(devtools)
+load_all()
+```
+
+If I had loaded devtools earlier I wouldn't need to add the usethis:: in
+front of use_test and use_r.
+
+Each time you make a change to code inside a package you need to re-load
+the package. I use ctrl +shift +L.
+
+The test function I wrote inside the test created.
 
 ```{r}
 # copy this to the test file test-add_one.R
@@ -91,6 +107,7 @@ expectations eg expect_equal(2 \* 2, 4)
 ## What makes a good test?
 
 Ideally tests should be self-sufficient and self-contained. It is more
+
 important to be obvious than DRY (do not repeat yourself). A range of values and edge cases should
 be included
 
@@ -128,8 +145,11 @@ about that when using functions from packages or running code globally
 
 ## Feedback
 
-Fork the training repo
+I would like feedback on the workshop series and requested that this be
+done by submitting a pull request to the training repository. I didn't
+demonstrate how to do that but any google search will give you
+instructions for how to submit a pull request. Please try. I don't care
+if you break the repo and you will gain experience and skills that are
+needed for working with code collaboratively.
 
-Add your comments
-
-Submit pull request
+<https://jarv.is/notes/how-to-pull-request-fork-github>
