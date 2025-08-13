@@ -47,6 +47,17 @@ usethis::use_r("add_one")
 usethis::use_test()
 ```
 
+I then loaded devtools and the package by running the following code in
+the console.
+
+```{r}
+library(devtools)
+load_all()
+```
+
+Each time you make a change to code inside a package you need to re-load
+the package. I use ctrl +shift +L.
+
 The test function I wrote inside the test created.
 
 ```{r}
@@ -79,8 +90,8 @@ expectations eg expect_equal(2 \* 2, 4)
 ## What makes a good test?
 
 Ideally tests should be self-sufficient and self-contained. It is more
-important to be obvious than DRY A range of values and edge cases should
-be included
+important to be obvious than DRY. A range of values and edge cases
+should be included
 
 ## other assertions
 
