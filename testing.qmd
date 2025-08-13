@@ -40,11 +40,17 @@ the code and paste it into console to run.
 # makes a package
 usethis::create_package("path to where you want the package")
 
-# makes a function
+#makes a function # creates a seperate file for the function and opens it in R
 usethis::use_r("add_one")
 
-# makes a test for the function 
+# to the function add_one add the following lines and save
+add_one <- function (number){
+  number +1
+}
+
+# makes a test for the function; creates folders tests ; opens a test file
 usethis::use_test()
+usethis::use_test("add_one")
 ```
 
 I then loaded devtools and the package by running the following code in
@@ -64,6 +70,11 @@ the package. I use ctrl +shift +L.
 The test function I wrote inside the test created.
 
 ```{r}
+# copy this to the test file test-add_one.R
+```
+
+
+```{r}
 test_that("add_one adds one", {
 
   # arrange
@@ -76,7 +87,10 @@ test_that("add_one adds one", {
   expect_equal(result, 6:11)
   expect_true(is.numeric(result))
 })
+```
 
+
+```{r}
 # can also have more than one testthat() I usually like a new testthat if I re-run the function with different input. 
 ```
 
@@ -93,8 +107,9 @@ expectations eg expect_equal(2 \* 2, 4)
 ## What makes a good test?
 
 Ideally tests should be self-sufficient and self-contained. It is more
-important to be obvious than DRY. A range of values and edge cases
-should be included
+
+important to be obvious than DRY (do not repeat yourself). A range of values and edge cases should
+be included
 
 ## other assertions
 
@@ -112,12 +127,16 @@ expect_error()
 expect_warning()
 
 ## running tests
+load packages: devtools::load_all(".")
 
 click the button
 
 Ctrl + Shift + T
 
 devtools::test()
+if asked, allow to create testing infrastructure
+if the test does not work, read error, it might be that the testing file is not in the package subfolder "testthat" / and/or function in the package subfolder "R"
+
 
 ## Scope
 
